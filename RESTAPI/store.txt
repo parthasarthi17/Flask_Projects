@@ -1,0 +1,46 @@
+from flask import Flask, request
+from flask_restful import Api, Resource, reqparse
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+api = Api(app)
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test55.db'
+db = SQLAlchemy(app)
+
+class VideoModel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(300), nullable=False)
+    likes = db.Column(db.Integer, nullable=False)
+    views = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return f"Video(name = {name}, likes = {likes}, views = {views})"
+
+
+
+video_put_args = reqparse.RequestParser()
+video_put_args.add_argument("name", type=str, help = "dfsdf")
+video_put_args.add_argument("likes", type=int, help = "dfsdf")
+video_put_args.add_argument("views", type=int, help = "dfsdf" )
+
+class Video(Resource):
+    def get(self, video_id):
+        if video_id not in videos:
+            abort(404, message="video not available")
+        return videos[video_id]
+
+    def put(self, video_id):
+        if video_id in videos:
+            abort(404, message="video already exists for this id")
+        args = video_put_args.parse_args()
+        return {video_id:args}
+
+
+
+api.add_resource(Video, "/video/<int:video_id>")
+
+
+if __name__ =="__main__":
+    app.run(debug=True)

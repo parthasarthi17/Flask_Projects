@@ -1,0 +1,29 @@
+<h1>{{post.title}}</h1>
+{{post.content}}
+<br><br><br>
+
+<ul>
+
+{% for x in comments %}
+   <li>{{x.contt}}
+
+   <ul>
+
+
+       {% for y in x.replies recursive %}
+       <ul>
+       <li>{{y.contt}}</li>
+         {% if y.replies %}
+         {{ loop(y.replies) }}
+         {% endif %}
+       </ul>
+       {% endfor %}
+
+     </li>
+
+   </ul>
+
+
+{% endfor %}
+
+</ul>

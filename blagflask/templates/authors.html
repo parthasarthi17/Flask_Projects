@@ -1,0 +1,19 @@
+    <table>
+        <tr>
+            <th>Authors</th>
+        </tr>
+
+        {% for author in authorss %}
+        <tr>
+            <td>{{ author.name }}</td> 
+
+
+
+        </tr>
+        {% endfor %}
+    </table>
+
+ <form action="/" method="POST">
+        <input type="text" name="author_name" id = "author_name"><br>
+        <input type="submit" value="Add Author">
+</form>

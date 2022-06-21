@@ -1,0 +1,28 @@
+<table>
+    <tr>
+        <th>Articles</th>
+    </tr>
+
+    {% for article in articless %}
+    <tr>
+        <td>{{ article.title }} - {{ article.writer_id }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<form action="/asd" method="POST">
+    <input type="text" name="article_title" id = "article_title"><br>
+    <input type="text" name="article_description"><br>
+
+    <select name = "article_writer">
+      {% for x in dataset %}
+
+      <option value ="{{x.id}}"> {{x.name}}  </option>
+
+      {% endfor %}
+
+    </select>
+    <br><br>
+    <input type="submit" value="Add Article">
+
+</form>

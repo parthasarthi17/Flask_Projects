@@ -1,0 +1,12 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+  <div class="container">
+  <h3>Our team will get back to you!!Thanks for contacting us!!!</h3>
+<hr>
+  {% for key in user_json %}
+    <li>{{ key }}: {{ user_json[key] }}</li>
+  {% endfor %}
+<hr>
+</div>
+{% endblock %}

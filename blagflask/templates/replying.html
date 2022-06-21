@@ -1,0 +1,10 @@
+<h1>Reply to Comments:</h1>
+
+{{parent_commnt.contt}}
+
+<hr>
+
+<form action="/replyto/{{parent_commnt.id}}" method="POST">
+       <input type="text" name="content" id="content">
+       <input type="submit" value="reply">
+</form>

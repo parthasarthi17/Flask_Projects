@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+
+    </style>
+  </head>
+  <body>
+    <table cellspacing = "10px">
+      <tr>
+        <th>  <h1>{{post.title}}</h1> </th>
+        <td>  <h3> &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp; {{writer.name}}</h3> </td>
+      </tr>
+    </table>
+
+    <hr>
+    <h4>{{post.description}}</h4>
+    <br><br><br>
+    <hr><hr>
+
+
+
+    <h2>Comments:</h2>
+    <h4> <a href="/commenton/{{post.id}}"> ADD COMMENTS </a> </h4>
+
+    <ul>
+
+    {% for x in comments | sort(attribute='datecommented')  %}
+       <li>
+         <table>
+           <tr>
+             <th>{{x.depth}} | {{x.contt}} </th> <td><h6> - {{x.datecommented}}</h6></td>
+           </tr>
+           <tr>
+             <td><a href="/replyto/{{x.id}}">reply</a></td>
+           </tr>
+         </table>
+
+       <ul>
+
+
+           {% for y in x.replies | sort(attribute='datecommented')  recursive   %}
+           <ul>
+           <li> <table>
+             <tr>
+               <td>{{y.depth}} | {{y.contt}} </td><td> <h6> - {{y.datecommented}}</h6> </td>
+             </tr>
+             <tr>
+               <td><a href="/replyto/{{y.id}}">reply</a></td>
+             </tr>
+           </table> </li>
+
+
+             {% if y.replies %}
+             {{ loop(y.replies | sort(attribute='datecommented')   )}}
+             {% endif %}
+           </ul>
+           {% endfor %}
+
+         </li>
+
+       </ul>
+
+
+    {% endfor %}
+
+    </ul>
+
+  </body>
+</html>

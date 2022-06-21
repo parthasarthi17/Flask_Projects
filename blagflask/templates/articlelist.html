@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Blog Posts</title>
+  </head>
+  <body>
+    <table>
+        <tr>
+            <th><h1>POSTS</h1></th>
+        </tr>
+
+        {% for post in postlist %}
+        <tr>
+            <td><h2> <a href="http://localhost:8000/post/{{post.id}}">{{post.title}}</a> -  </h2></td>
+            {% if post.datecreated %}<td> <h6>{{post.datecreated}}</h6> </td>
+            {% endif %}
+        </tr>
+        <tr>
+          <td>{{post.description}} <hr> </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+  </body>
+</html>

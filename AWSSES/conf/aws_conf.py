@@ -1,0 +1,4 @@
+SECRET_KEY = ''
+
+CHARSET = 'UTF-8'
+SENDER =''
